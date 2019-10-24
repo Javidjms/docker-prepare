@@ -1,0 +1,14 @@
+version: "3"
+services:
+  docker-prepare:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app/
+    environment:
+      - TZ=Europe/Paris
+    env_file:
+      - .env
+    # ports:
+      # - "8000:8000"
