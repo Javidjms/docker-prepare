@@ -19,7 +19,7 @@ from .core import Core
 )
 @click.option(
     '-e',
-    '--env_files',
+    '--env_file',
     'env_files',
     type=click.Path(exists=True),
     multiple=True,
@@ -47,7 +47,7 @@ def main(ctx, *args, **kwargs):
 )
 @click.option(
     '-e',
-    '--env_files',
+    '--env_file',
     'env_files',
     type=click.Path(exists=True),
     multiple=True,
