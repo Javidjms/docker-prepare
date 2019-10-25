@@ -9,6 +9,13 @@ import click
     type=click.Path(exists=True),
     default='Dockertemplate',
 )
+@click.option(
+    '-o',
+    '--output',
+    'output_docker_file_path',
+    type=click.Path(),
+    default='Dockerfile',
+)
 @click.pass_context
 def main(ctx, *args, **kwargs):
     if ctx.invoked_subcommand is None:
