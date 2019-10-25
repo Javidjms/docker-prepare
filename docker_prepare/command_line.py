@@ -31,5 +31,12 @@ def main(ctx, *args, **kwargs):
 
 
 @main.command()
+@click.option(
+    '-i',
+    '--input',
+    'input_docker_template_path',
+    type=click.Path(exists=True),
+    default='Dockertemplate',
+)
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
