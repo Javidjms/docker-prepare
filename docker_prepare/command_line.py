@@ -45,5 +45,12 @@ def main(ctx, *args, **kwargs):
     type=click.Path(),
     default='Dockerfile',
 )
+@click.option(
+    '-e',
+    '--env_files',
+    'env_files',
+    type=click.Path(exists=True),
+    multiple=True,
+)
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
