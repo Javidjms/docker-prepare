@@ -54,3 +54,8 @@ def main(ctx, *args, **kwargs):
 )
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
+
+
+@main.command()
+def sample():
+    click.echo('sample')
