@@ -24,6 +24,12 @@ Quick start
     docker-prepare --input Dockertemplate --output Dockerfile
     docker-prepare --input Dockertemplate --output Dockerfile --env_file .env --env_file .env.local
 
+::
+
+    # Dockertemplate
+    {% include "Dockertemplate.base" %}
+    {% include "Dockertemplate.core" %}
+
 Contributors
 ------------
 
