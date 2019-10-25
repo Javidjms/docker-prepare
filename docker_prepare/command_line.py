@@ -1,4 +1,5 @@
 import click
+from .core import Core
 
 
 @click.group(invoke_without_command=True)
@@ -27,3 +28,8 @@ import click
 def main(ctx, *args, **kwargs):
     if ctx.invoked_subcommand is None:
         ctx.forward(generate)
+
+
+@main.command()
+def generate(*args, **kwargs):
+    Core.run(*args, **kwargs)
