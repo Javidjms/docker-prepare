@@ -38,5 +38,12 @@ def main(ctx, *args, **kwargs):
     type=click.Path(exists=True),
     default='Dockertemplate',
 )
+@click.option(
+    '-o',
+    '--output',
+    'output_docker_file_path',
+    type=click.Path(),
+    default='Dockerfile',
+)
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
