@@ -18,6 +18,8 @@ Quick start
     # Installation
     pip install -U docker-prepare
 
+.. code:: bash
+
     # Usage
     docker-prepare --input Dockertemplate --output Dockerfile
     docker-prepare --input Dockertemplate --output Dockerfile --env_file .env --env_file .env.local
