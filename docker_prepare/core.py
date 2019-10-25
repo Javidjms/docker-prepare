@@ -1,8 +1,18 @@
+from dotenv import dotenv_values
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 
 class Core:
+    @staticmethod
+    def get_environment_variables(env_files):
+        env_vars = {}
+        for env_file in env_files:
+            env_path = Path(env_file)
+            env_values = dotenv_values(dotenv_path=env_path)
+            env_vars.update(env_values)
+        return env_vars
+
     @staticmethod
     def render_docker_file(file_path, env_vars={}):
         file_name = Path(file_path).name
