@@ -16,6 +16,13 @@ import click
     type=click.Path(),
     default='Dockerfile',
 )
+@click.option(
+    '-e',
+    '--env_files',
+    'env_files',
+    type=click.Path(exists=True),
+    multiple=True,
+)
 @click.pass_context
 def main(ctx, *args, **kwargs):
     if ctx.invoked_subcommand is None:
