@@ -34,6 +34,12 @@ from .core import Core
     multiple=True,
     help='path of the .env file',
 )
+@click.option(
+    '-v',
+    '--verbose',
+    is_flag=True,
+    help='Enables verbose mode',
+)
 @click.pass_context
 def main(ctx, *args, **kwargs):
     if ctx.invoked_subcommand is None:
@@ -71,6 +77,12 @@ def main(ctx, *args, **kwargs):
     type=click.Path(exists=True),
     multiple=True,
     help='path of the .env file',
+)
+@click.option(
+    '-v',
+    '--verbose',
+    is_flag=True,
+    help='Enables verbose mode',
 )
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
