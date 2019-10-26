@@ -19,6 +19,12 @@ from .core import Core
 )
 @click.option(
     '-e',
+    '--env',
+    'env_vars',
+    multiple=True,
+)
+@click.option(
+    '-ef',
     '--env_file',
     'env_files',
     type=click.Path(exists=True),
@@ -47,6 +53,12 @@ def main(ctx, *args, **kwargs):
 )
 @click.option(
     '-e',
+    '--env',
+    'env_vars',
+    multiple=True,
+)
+@click.option(
+    '-ef',
     '--env_file',
     'env_files',
     type=click.Path(exists=True),
