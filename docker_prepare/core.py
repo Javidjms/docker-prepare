@@ -1,7 +1,8 @@
+import click
 import os
 from dotenv import dotenv_values
 from pathlib import Path
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, exceptions
 
 
 class Core:
@@ -68,9 +69,14 @@ class Core:
             loader=FileSystemLoader(parent_dir),
             trim_blocks=True,
         )
-        rendered_docker_file = j2_env\
-            .get_template(file_name)\
-            .render(**env_vars)
+        try:
+            rendered_docker_file = j2_env\
+                .get_template(file_name)\
+                .render(**global_env_vars)
+        except exceptions.TemplateSyntaxError as error:
+            msg = 'Failed to generate Dockerfile : {}'.format(error)
+            click.echo(msg, err=True)
+            exit(0)
         return rendered_docker_file
 
     @staticmethod
