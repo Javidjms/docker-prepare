@@ -42,6 +42,9 @@ from .core import Core
 )
 @click.pass_context
 def main(ctx, *args, **kwargs):
+    """
+    This script generate a Dockerfile from Dockertemplate (jinja template).
+    """
     if ctx.invoked_subcommand is None:
         ctx.forward(generate)
 
@@ -85,9 +88,15 @@ def main(ctx, *args, **kwargs):
     help='Enables verbose mode',
 )
 def generate(*args, **kwargs):
+    """
+    This script generate a Dockerfile from Dockertemplate (jinja template).
+    """
     Core.run(*args, **kwargs)
 
 
 @main.command()
 def sample():
     click.echo('sample')
+    """
+    This script generate a sample Dockertemplate.
+    """
