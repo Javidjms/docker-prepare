@@ -1,3 +1,4 @@
+import os
 from dotenv import dotenv_values
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
@@ -6,18 +7,32 @@ from jinja2 import Environment, FileSystemLoader
 class Core:
     @staticmethod
     def run(*args, **kwargs):
-        env_files = kwargs.get('env_files')
         input_docker_template_path = kwargs.get('input_docker_template_path')
         output_docker_file_path = kwargs.get('output_docker_file_path')
-        env_vars = Core.get_environment_variables(env_files)
+        global_env_vars = Core.retrieve_all_env_vars(**kwargs)
         rendered_docker_file = Core.render_docker_file(
             input_docker_template_path,
-            env_vars,
+            global_env_vars,
         )
         Core.write_file(
             output_docker_file_path,
             rendered_docker_file,
         )
+
+    @staticmethod
+    def retrieve_all_env_vars(**kwargs):
+        env_files = kwargs.get('env_files')
+        cli_env_vars = kwargs.get('env_vars')
+        parsed_env_vars = Core.parse_environment_variables_from_cli(
+            cli_env_vars
+        )
+        file_env_vars = Core.get_environment_variables_from_file(env_files)
+        global_env_vars = Core.merge_env_vars(
+            os.environ,
+            file_env_vars,
+            parsed_env_vars,
+        )
+        return global_env_vars
 
     @staticmethod
     def parse_environment_variables_from_cli(cli_env_vars):
