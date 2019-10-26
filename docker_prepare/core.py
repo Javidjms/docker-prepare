@@ -20,7 +20,16 @@ class Core:
         )
 
     @staticmethod
-    def get_environment_variables(env_files):
+    def parse_environment_variables_from_cli(cli_env_vars):
+        env_vars = {}
+        for cli_env_var in cli_env_vars:
+            if '=' in cli_env_var:
+                key, value = cli_env_var.split("=", 1)
+                env_vars[key] = value
+        return env_vars
+
+    @staticmethod
+    def get_environment_variables_from_file(env_files):
         env_vars = {}
         for env_file in env_files:
             env_path = Path(env_file)
