@@ -53,6 +53,13 @@ class Core:
         return env_vars
 
     @staticmethod
+    def merge_env_vars(*env_dicts):
+        merged_env_vars = {}
+        for env_dict in env_dicts:
+            merged_env_vars.update(env_dict)
+        return merged_env_vars
+
+    @staticmethod
     def render_docker_file(file_path, env_vars={}):
         file_name = Path(file_path).name
         parent_dir = Path(file_path).parent.absolute().as_posix()
