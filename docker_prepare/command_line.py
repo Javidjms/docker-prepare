@@ -96,7 +96,7 @@ def generate(*args, **kwargs):
 
 @main.command()
 def sample():
-    click.echo('sample')
     """
     This script generate a sample Dockertemplate.
     """
+    click.echo('Not Implemented Yet')
