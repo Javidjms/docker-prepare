@@ -14,14 +14,20 @@ class Core:
         rendered_docker_file = Core.render_docker_file(
             input_docker_template_path,
             global_env_vars,
+            **kwargs
         )
         Core.write_file(
             output_docker_file_path,
             rendered_docker_file,
+            **kwargs
         )
 
     @staticmethod
     def retrieve_all_env_vars(**kwargs):
+        verbose = kwargs.get('verbose', False)
+        if verbose:
+            click.echo('Loading environment variables')
+
         env_files = kwargs.get('env_files')
         cli_env_vars = kwargs.get('env_vars')
         parsed_env_vars = Core.parse_environment_variables_from_cli(
@@ -61,7 +67,11 @@ class Core:
         return merged_env_vars
 
     @staticmethod
-    def render_docker_file(file_path, env_vars={}):
+    def render_docker_file(file_path, global_env_vars={}, **kwargs):
+        verbose = kwargs.get('verbose', False)
+        if verbose:
+            click.echo('Loading {}'.format(file_path))
+
         file_name = Path(file_path).name
         parent_dir = Path(file_path).parent.absolute().as_posix()
 
@@ -80,6 +90,10 @@ class Core:
         return rendered_docker_file
 
     @staticmethod
-    def write_file(file_path, rendered_content):
+    def write_file(file_path, rendered_content, **kwargs):
+        verbose = kwargs.get('verbose', False)
         with open(file_path, "w") as text_file:
             text_file.write(rendered_content)
+
+            if verbose:
+                click.echo('The `{}` has been generated'.format(file_path))
