@@ -9,6 +9,7 @@ from .core import Core
     'input_docker_template_path',
     type=click.Path(exists=True),
     default='Dockertemplate',
+    help='path of the Dockertemplate',
 )
 @click.option(
     '-o',
@@ -16,12 +17,14 @@ from .core import Core
     'output_docker_file_path',
     type=click.Path(),
     default='Dockerfile',
+    help='path of the Dockerfile',
 )
 @click.option(
     '-e',
     '--env',
     'env_vars',
     multiple=True,
+    help='environment variable (key=value)',
 )
 @click.option(
     '-ef',
@@ -29,6 +32,7 @@ from .core import Core
     'env_files',
     type=click.Path(exists=True),
     multiple=True,
+    help='path of the .env file',
 )
 @click.pass_context
 def main(ctx, *args, **kwargs):
@@ -43,6 +47,7 @@ def main(ctx, *args, **kwargs):
     'input_docker_template_path',
     type=click.Path(exists=True),
     default='Dockertemplate',
+    help='path of the Dockertemplate',
 )
 @click.option(
     '-o',
@@ -50,12 +55,14 @@ def main(ctx, *args, **kwargs):
     'output_docker_file_path',
     type=click.Path(),
     default='Dockerfile',
+    help='path of the Dockerfile',
 )
 @click.option(
     '-e',
     '--env',
     'env_vars',
     multiple=True,
+    help='environment variable (key=value)',
 )
 @click.option(
     '-ef',
@@ -63,6 +70,7 @@ def main(ctx, *args, **kwargs):
     'env_files',
     type=click.Path(exists=True),
     multiple=True,
+    help='path of the .env file',
 )
 def generate(*args, **kwargs):
     Core.run(*args, **kwargs)
