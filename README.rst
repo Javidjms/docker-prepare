@@ -1,3 +1,6 @@
+.. figure:: ./artwork/logo.svg
+   :alt:
+
 Docker-prepare
 ==============
 
@@ -34,3 +37,8 @@ Contributors
 ------------
 
 -  `Javid Mougamadou <https://github.com/Javidjms>`__
+
+Credits
+-------
+
+-  Logo designed by `Maxime Bergerard <https://github.com/maximebergerard>`__
